@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="LOLPVP - old-school 1.7 PvP on the latest Minecraft. Teams, Practice, Soup HG and HCF. play.lolpvp.net">
+<title>LOLPVP Network</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@500;700&family=Rubik:wght@400;500;700&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+/* Layout: one long night-sky scroll. Rainbow wordmark hero with the IP block, then modes, events, store, rules.
+   Single deliberate dark look (it's a PvP network after dark), every color still a token. */
+:root {
+  --bg: #0d0f1e;          /* night sky ink */
+  --panel: #161a33;       /* raised blocks */
+  --line: #2a3060;        /* block edges */
+  --fg: #eef0ff;          /* text */
+  --muted: #9ea4cc;       /* secondary text */
+  --gold: #ffcf4d;        /* highlights, prices */
+  --shadow: #05060f;      /* hard pixel drop shadow */
+  --teams: #ffffff; --prac: #55e0ff; --hg: #6dff8a; --hcf: #ffb347;
+  --display: "Pixelify Sans", "Courier New", monospace;
+  --body: "Rubik", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background:
+    radial-gradient(1px 1px at 12% 18%, #ffffff55 50%, transparent 51%),
+    radial-gradient(1px 1px at 72% 9%, #ffffff44 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 88% 32%, #ffffff66 50%, transparent 51%),
+    radial-gradient(1px 1px at 34% 41%, #ffffff33 50%, transparent 51%),
+    radial-gradient(1px 1px at 55% 24%, #ffffff40 50%, transparent 51%),
+    var(--bg);
+  color: var(--fg);
+  font-family: var(--body);
+  font-size: 16px;
+  line-height: 1.6;
+}
+a { color: inherit; }
+.wrap { max-width: 1080px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+
+/* ---------- top bar */
+header.top { padding-block: 18px; }
+header.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.mini { font-family: var(--display); font-weight: 700; font-size: 22px; letter-spacing: 1px; }
+nav { display: flex; gap: 18px; flex-wrap: wrap; font-weight: 700; font-size: 14px; text-transform: lowercase; }
+nav a { text-decoration: none; color: var(--muted); }
+nav a:hover, nav a:focus-visible { color: var(--fg); }
+
+/* ---------- rainbow wordmark (same wave as the in-game scoreboard title) */
+.rb span { display: inline-block; animation: hue 2.5s linear infinite; }
+@keyframes hue {
+  0% { color: #ff2626 } 16% { color: #ffb026 } 33% { color: #dfff26 } 50% { color: #26ff7a }
+  66% { color: #26c6ff } 83% { color: #a626ff } 100% { color: #ff2626 }
+}
+@media (prefers-reduced-motion: reduce) { .rb span { animation: none; } }
+
+/* ---------- hero */
+.hero { padding-block: 48px 64px; display: grid; gap: 28px; }
+.hero h1 {
+  font-family: var(--display); font-weight: 700; margin: 0;
+  font-size: clamp(64px, 16vw, 168px); line-height: 0.9; letter-spacing: 2px;
+  text-shadow: 6px 6px 0 var(--shadow);
+}
+.tag { font-size: clamp(18px, 3vw, 24px); margin: 0; max-width: 34ch; text-wrap: balance; }
+.tag b { color: var(--gold); }
+.ipbox {
+  display: flex; align-items: stretch; flex-wrap: wrap; gap: 0; width: fit-content; max-width: 100%;
+  border: 3px solid var(--line); background: var(--panel); box-shadow: 6px 6px 0 var(--shadow);
+}
+.ip { font-family: var(--mono); font-weight: 700; font-size: clamp(18px, 4vw, 26px); padding: 14px 20px; user-select: all; min-width: 0; overflow-wrap: anywhere; }
+.copy {
+  font: 700 15px var(--body); text-transform: lowercase; cursor: pointer;
+  background: var(--gold); color: #1a1405; border: 0; padding: 0 22px; min-height: 52px;
+}
+.copy:hover { filter: brightness(1.08); }
+.copy:focus-visible, nav a:focus-visible, .btn:focus-visible { outline: 3px solid var(--prac); outline-offset: 3px; }
+.status { display: flex; gap: 20px; flex-wrap: wrap; color: var(--muted); font-size: 15px; }
+.status b { color: var(--fg); font-variant-numeric: tabular-nums; }
+.dot { display: inline-block; width: 10px; height: 10px; background: var(--hg); margin-right: 8px; box-shadow: 0 0 10px var(--hg); }
+.dot.off { background: #ff5b5b; box-shadow: none; }
+
+/* ---------- section headings */
+section { padding-block: 40px; }
+h2 { font-family: var(--display); font-weight: 700; font-size: clamp(30px, 5vw, 44px); margin: 0 0 8px; letter-spacing: 1px; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0 0 28px; max-width: 62ch; }
+
+/* ---------- modes: four "server signs" */
+.modes { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+.mode { background: var(--panel); border: 3px solid var(--line); padding: 22px; display: grid; gap: 10px; align-content: start; min-width: 0; }
+.mode .name { font-family: var(--display); font-weight: 700; font-size: 26px; line-height: 1; }
+.mode .kind { font-size: 13px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--muted); }
+.mode ul { margin: 0; padding-left: 18px; color: var(--fg); }
+.mode li { margin-block: 2px; }
+.mode.teams .name { color: var(--teams); } .mode.prac .name { color: var(--prac); }
+.mode.hg .name { color: var(--hg); } .mode.hcf .name { color: var(--hcf); }
+.mode.teams { border-top-color: var(--teams); } .mode.prac { border-top-color: var(--prac); }
+.mode.hg { border-top-color: var(--hg); } .mode.hcf { border-top-color: var(--hcf); }
+
+/* ---------- events: a schedule board */
+.board { border: 3px solid var(--line); background: var(--panel); overflow-x: auto; }
+.board table { width: 100%; border-collapse: collapse; min-width: 520px; }
+.board th, .board td { text-align: left; padding: 14px 18px; border-bottom: 2px solid var(--line); }
+.board th { font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--muted); font-weight: 500; }
+.board tr:last-child td { border-bottom: 0; }
+.board td.when { font-family: var(--mono); font-weight: 700; color: var(--gold); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.board td.ev { font-weight: 700; }
+
+/* ---------- store */
+.ranks { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+.rank { background: var(--panel); border: 3px solid var(--line); padding: 22px; display: grid; gap: 12px; align-content: start; min-width: 0; }
+.rank.top { box-shadow: 6px 6px 0 var(--shadow); border-color: var(--gold); }
+.rank .tagname { font-family: var(--display); font-weight: 700; font-size: 30px; line-height: 1; }
+.rank .price { font-family: var(--mono); font-weight: 700; font-size: 22px; color: var(--gold); }
+.rank .price small { font-size: 13px; color: var(--muted); font-weight: 500; }
+.rank ul { margin: 0; padding-left: 18px; }
+.rank li.new { font-weight: 700; }
+.lol { color: #55ff55; } .pro { color: #55ffff; } .god { color: #ffaa00; }
+.chat { font-family: var(--mono); font-size: 13px; background: var(--bg); border: 2px solid var(--line); padding: 8px 10px; overflow-wrap: anywhere; }
+.chat .msg { color: var(--fg); }
+.fair { margin-top: 22px; color: var(--muted); font-size: 14px; max-width: 70ch; }
+.btn {
+  display: inline-block; margin-top: 24px; text-decoration: none; text-transform: lowercase;
+  font-weight: 700; font-size: 17px; background: var(--gold); color: #1a1405; padding: 14px 26px;
+  box-shadow: 5px 5px 0 var(--shadow);
+}
+.btn:hover { filter: brightness(1.08); }
+
+/* ---------- rules */
+.rules { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px 28px; margin: 0; padding: 0; list-style: none; }
+.rules li { padding: 12px 0; border-bottom: 2px solid var(--line); }
+.rules b { color: var(--gold); }
+
+footer { padding-block: 40px 56px; color: var(--muted); font-size: 13px; }
+footer .wrap { display: grid; gap: 8px; }
+</style>
+</head>
+<body>
+
+
+<header class="top">
+  <div class="wrap">
+    <div class="mini rb" aria-label="LOLPVP"><span>L</span><span style="animation-delay:-.4s">O</span><span style="animation-delay:-.8s">L</span><span style="animation-delay:-1.2s">P</span><span style="animation-delay:-1.6s">V</span><span style="animation-delay:-2s">P</span></div>
+    <nav aria-label="Sections">
+      <a href="#modes">servers</a>
+      <a href="#events">events</a>
+      <a href="#store">store</a>
+      <a href="#rules">rules</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap hero">
+    <h1 class="rb" aria-label="LOLPVP"><span>L</span><span style="animation-delay:-.4s">O</span><span style="animation-delay:-.8s">L</span><span style="animation-delay:-1.2s">P</span><span style="animation-delay:-1.6s">V</span><span style="animation-delay:-2s">P</span></h1>
+    <p class="tag">Old-school PvP on the latest version. <b>1.7 combat &amp; blockhitting</b> on 26.3, and 26.2 works too.</p>
+    <div class="ipbox">
+      <div class="ip" id="ip">play.lolpvp.net</div>
+      <button class="copy" id="copy" type="button">click to copy</button>
+    </div>
+    <div class="status" aria-live="polite">
+      <span><i class="dot" id="dot"></i><b id="online">…</b> <span id="online-label">playing now</span></span>
+      <span>Java Edition · <b>26.3</b></span>
+      <span>Teams · Practice · Soup HG · HCF</span>
+    </div>
+  </div>
+
+  <section id="modes">
+    <div class="wrap">
+      <h2>Pick a server</h2>
+      <p class="sub">Join the hub, grab the compass and click a server. Everything runs old 1.7 mechanics: no attack cooldown, blockhitting, 1.7 pots and pearls.</p>
+      <div class="modes">
+        <article class="mode teams">
+          <div class="kind">Raid soup</div>
+          <div class="name">LOLTEAMS</div>
+          <ul>
+            <li>MCTeams-style raiding with soup PvP</li>
+            <li>Ice spawn with a block-only parkour</li>
+            <li>/buy &amp; /sell market priced in gold</li>
+            <li>Speed &amp; fire-res boots, rare netherite</li>
+          </ul>
+        </article>
+        <article class="mode prac">
+          <div class="kind">Practice</div>
+          <div class="name">LOLPRAC</div>
+          <ul>
+            <li>NoDebuff, BuildUHC, Soup, Sumo, Combo</li>
+            <li>The Bridge, Battle Rush, Fireball Fight</li>
+            <li>Ranked ELO + kit editor for every mode</li>
+            <li>Kohi arenas and a Saturn map</li>
+          </ul>
+        </article>
+        <article class="mode hg">
+          <div class="kind">Survival games</div>
+          <div class="name">LOLHG</div>
+          <ul>
+            <li>Soup Hunger Games, MCPVP style</li>
+            <li>A new small map every round, no oceans</li>
+            <li>Soup biomes: swamp, jungle, desert</li>
+            <li>Two lobbies, kits, feasts</li>
+          </ul>
+        </article>
+        <article class="mode hcf">
+          <div class="kind">Hardcore factions</div>
+          <div class="name">LOLHCF</div>
+          <ul>
+            <li>Pot PvP factions, 8-man max, deathbans</li>
+            <li>KOTHs: Fortnite, Ohio, Hell's Kitchen, Touch Grass</li>
+            <li>Glowstone Mountain + End creeper farm</li>
+            <li>Max enchants Prot II / Sharp III</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="events">
+    <div class="wrap">
+      <h2>HCF events</h2>
+      <p class="sub">Every cap pays out loot you can't get anywhere else: Fire Aspect, Flame, Knockback and Punch books, and netherite. Times are Central.</p>
+      <div class="board">
+        <table>
+          <thead><tr><th>When</th><th>Event</th><th>What you're fighting for</th></tr></thead>
+          <tbody>
+            <tr><td class="when">FRI 7:00 PM</td><td class="ev">Subjugation</td><td>Four caps. Hold one for 30s and a point is submitted. First faction to 150 wins.</td></tr>
+            <tr><td class="when">SAT 7:00 PM</td><td class="ev">The Palace</td><td>A giant nether fortress cap. Level II books, netherite chest and legs, Palace Sword &amp; Bow.</td></tr>
+            <tr><td class="when">EVERY 3 HRS</td><td class="ev">Random KOTH</td><td>Level I books, ore blocks, netherite helmets and boots.</td></tr>
+            <tr><td class="when">EVERY HOUR</td><td class="ev">Glowstone Mountain</td><td>A giant glowstone block in the nether resets. Creeper spawners nearby for gunpowder.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section id="store">
+    <div class="wrap">
+      <h2>Ranks</h2>
+      <p class="sub">Ranks work on every server and each one includes everything below it. They're bought on our Tebex store and show up in-game within seconds.</p>
+      <div class="ranks">
+        <article class="rank">
+          <div class="tagname lol">LOL</div>
+          <div class="price">$5 <small>one time</small></div>
+          <div class="chat"><b class="lol">LOL</b> <span class="msg">Steve: gg</span></div>
+          <ul>
+            <li class="new">Green LOL tag in chat &amp; tab</li>
+            <li>Join servers even when full</li>
+          </ul>
+        </article>
+        <article class="rank">
+          <div class="tagname pro">PRO</div>
+          <div class="price">$10 <small>one time</small></div>
+          <div class="chat"><b class="pro">PRO</b> <span class="msg">Steve: gg</span></div>
+          <ul>
+            <li class="new">Aqua PRO tag</li>
+            <li class="new">/fly in the hub</li>
+            <li>Everything in LOL</li>
+          </ul>
+        </article>
+        <article class="rank">
+          <div class="tagname god">GOD</div>
+          <div class="price">$20 <small>one time</small></div>
+          <div class="chat"><b class="god">GOD</b> <span class="msg">Steve: gg</span></div>
+          <ul>
+            <li class="new">Gold GOD tag</li>
+            <li class="new">Join message in the hub</li>
+            <li>Everything in PRO</li>
+          </ul>
+        </article>
+        <article class="rank top">
+          <div class="tagname rb"><span>L</span><span style="animation-delay:-.4s">O</span><span style="animation-delay:-.8s">L</span><span style="animation-delay:-1.2s">G</span><span style="animation-delay:-1.6s">O</span><span style="animation-delay:-2s">D</span></div>
+          <div class="price">$40 <small>one time</small></div>
+          <div class="chat"><b class="rb"><span>L</span><span style="animation-delay:-.4s">O</span><span style="animation-delay:-.8s">L</span><span style="animation-delay:-1.2s">G</span><span style="animation-delay:-1.6s">O</span><span style="animation-delay:-2s">D</span></b> <span class="msg">Steve: gg</span></div>
+          <ul>
+            <li class="new">Animated rainbow LOLGOD tag, same wave as the LOLPVP logo</li>
+            <li>Everything in GOD</li>
+          </ul>
+        </article>
+      </div>
+      <a class="btn" id="store-link" href="https://lolpvp.tebex.io" target="_blank" rel="noopener">open the store</a>
+      <p class="fair">No pay-to-win. Ranks are cosmetic and convenience only: no kits, gear, money or combat perks. That's the Minecraft EULA and it's how we want it anyway.</p>
+    </div>
+  </section>
+
+  <section id="rules">
+    <div class="wrap">
+      <h2>Rules</h2>
+      <ul class="rules">
+        <li><b>No cheats.</b> Hacked clients, x-ray, auto-clickers and macros are bannable. Lunar and other legit clients are fine.</li>
+        <li><b>No exploiting.</b> Found a bug or dupe? Tell staff, don't use it.</li>
+        <li><b>Keep chat fun.</b> Trash talk is part of PvP. Slurs, threats and doxxing are not.</li>
+        <li><b>No advertising</b> other servers or selling accounts.</li>
+        <li><b>HCF:</b> max 8 per faction. No allying with other factions.</li>
+        <li><b>Staff have the final call.</b> Appeal bans through the store's support page.</li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>play.lolpvp.net · Minecraft Java Edition 26.3</div>
+    <div>LOLPVP is not an official Minecraft product and is not approved by or associated with Mojang or Microsoft.</div>
+  </div>
+</footer>
+
+<script>
+  // copy the IP
+  const copyBtn = document.getElementById('copy');
+  copyBtn.addEventListener('click', () => {
+    const ip = document.getElementById('ip').textContent.trim();
+    const done = () => { copyBtn.textContent = 'copied!'; setTimeout(() => copyBtn.textContent = 'click to copy', 1600); };
+    try {
+      navigator.clipboard.writeText(ip).then(done).catch(() => select());
+    } catch (e) { select(); }
+    function select() {
+      const r = document.createRange(); r.selectNodeContents(document.getElementById('ip'));
+      const s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      copyBtn.textContent = 'press ctrl+c';
+    }
+  });
+
+  // live player count (works on the real site; previews can block outside requests)
+  (async () => {
+    const online = document.getElementById('online'), dot = document.getElementById('dot'), label = document.getElementById('online-label');
+    try {
+      const r = await fetch('https://api.mcsrvstat.us/3/play.lolpvp.net');
+      const d = await r.json();
+      if (d.online) { online.textContent = d.players?.online ?? 0; label.textContent = 'playing now'; }
+      else { online.textContent = 'offline'; label.textContent = 'right now'; dot.classList.add('off'); }
+    } catch (e) {
+      online.textContent = 'join'; label.textContent = 'and see who\'s on';
+    }
+  })();
+</script>
+
+</body>
+</html>
