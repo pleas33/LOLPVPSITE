@@ -7,7 +7,7 @@
 <title>LOLPVP Network</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@500;700&family=Rubik:wght@400;500;700&family=JetBrains+Mono:wght@500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rubik:wght@400;500;700&family=JetBrains+Mono:wght@500;700&display=swap">
 <style>
 /* Layout: one long night-sky scroll. Rainbow wordmark hero with the IP block, then modes, events, store, rules.
    Single deliberate dark look (it's a PvP network after dark), every color still a token. */
@@ -20,7 +20,7 @@
   --gold: #ffcf4d;        /* highlights, prices */
   --shadow: #05060f;      /* hard pixel drop shadow */
   --teams: #ffffff; --prac: #55e0ff; --hg: #6dff8a; --hcf: #ffb347;
-  --display: "Pixelify Sans", "Courier New", monospace;
+  --display: "Press Start 2P", "Courier New", monospace;
   --body: "Rubik", system-ui, -apple-system, "Segoe UI", sans-serif;
   --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
   color-scheme: dark;
@@ -45,7 +45,7 @@ a { color: inherit; }
 /* ---------- top bar */
 header.top { padding-block: 18px; }
 header.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
-.mini { font-family: var(--display); font-weight: 700; font-size: 22px; letter-spacing: 1px; }
+.mini { font-family: var(--display); font-size: 16px; }
 nav { display: flex; gap: 18px; flex-wrap: wrap; font-weight: 700; font-size: 14px; text-transform: lowercase; }
 nav a { text-decoration: none; color: var(--muted); }
 nav a:hover, nav a:focus-visible { color: var(--fg); }
@@ -62,7 +62,7 @@ nav a:hover, nav a:focus-visible { color: var(--fg); }
 .hero { padding-block: 48px 64px; display: grid; gap: 28px; }
 .hero h1 {
   font-family: var(--display); font-weight: 700; margin: 0;
-  font-size: clamp(64px, 16vw, 168px); line-height: 0.9; letter-spacing: 2px;
+  font-size: clamp(44px, 12vw, 120px); line-height: 1.05; letter-spacing: 0;
   text-shadow: 6px 6px 0 var(--shadow);
 }
 .tag { font-size: clamp(18px, 3vw, 24px); margin: 0; max-width: 34ch; text-wrap: balance; }
@@ -85,13 +85,13 @@ nav a:hover, nav a:focus-visible { color: var(--fg); }
 
 /* ---------- section headings */
 section { padding-block: 40px; }
-h2 { font-family: var(--display); font-weight: 700; font-size: clamp(30px, 5vw, 44px); margin: 0 0 8px; letter-spacing: 1px; text-wrap: balance; }
+h2 { font-family: var(--display); font-weight: 400; font-size: clamp(20px, 3.4vw, 30px); line-height: 1.4; margin: 0 0 14px; text-wrap: balance; }
 .sub { color: var(--muted); margin: 0 0 28px; max-width: 62ch; }
 
 /* ---------- modes: four "server signs" */
 .modes { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
 .mode { background: var(--panel); border: 3px solid var(--line); padding: 22px; display: grid; gap: 10px; align-content: start; min-width: 0; }
-.mode .name { font-family: var(--display); font-weight: 700; font-size: 26px; line-height: 1; }
+.mode .name { font-family: var(--display); font-size: 18px; line-height: 1.3; text-shadow: 3px 3px 0 var(--shadow); }
 .mode .kind { font-size: 13px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--muted); }
 .mode ul { margin: 0; padding-left: 18px; color: var(--fg); }
 .mode li { margin-block: 2px; }
@@ -113,7 +113,7 @@ h2 { font-family: var(--display); font-weight: 700; font-size: clamp(30px, 5vw, 
 .ranks { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
 .rank { background: var(--panel); border: 3px solid var(--line); padding: 22px; display: grid; gap: 12px; align-content: start; min-width: 0; }
 .rank.top { box-shadow: 6px 6px 0 var(--shadow); border-color: var(--gold); }
-.rank .tagname { font-family: var(--display); font-weight: 700; font-size: 30px; line-height: 1; }
+.rank .tagname { font-family: var(--display); font-size: 20px; line-height: 1.3; text-shadow: 3px 3px 0 var(--shadow); }
 .rank .price { font-family: var(--mono); font-weight: 700; font-size: 22px; color: var(--gold); }
 .rank .price small { font-size: 13px; color: var(--muted); font-weight: 500; }
 .rank ul { margin: 0; padding-left: 18px; }
