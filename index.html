@@ -110,6 +110,12 @@ h2 { font-family: var(--display); font-weight: 400; font-size: clamp(20px, 3.4vw
 .board td.ev { font-weight: 700; }
 
 /* ---------- store */
+.dbh { margin: 34px 0 10px; font-size: 1.1em; }
+.dbwrap { overflow-x: auto; }
+.deathbans { border-collapse: collapse; width: 100%; max-width: 640px; text-align: center; font-size: .95em; }
+.deathbans th, .deathbans td { padding: 9px 10px; border: 1px solid rgba(255,255,255,.12); }
+.deathbans th { font-weight: 700; }
+.deathbans .rbt { background: linear-gradient(90deg,#ff2626,#ffb026,#dfff26,#26ff7a,#26c6ff,#a626ff); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .ranks { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
 .rank { background: var(--panel); border: 3px solid var(--line); padding: 22px; display: grid; gap: 12px; align-content: start; min-width: 0; }
 .rank.top { box-shadow: 6px 6px 0 var(--shadow); border-color: var(--gold); }
@@ -227,7 +233,7 @@ footer .wrap { display: grid; gap: 8px; }
         <table>
           <thead><tr><th>When</th><th>Event</th><th>What you're fighting for</th></tr></thead>
           <tbody>
-            <tr><td class="when">FRI 7:00 PM</td><td class="ev">Subjugation</td><td>Four caps. Hold one for 30s and a point is submitted. First faction to 150 wins.</td></tr>
+            <tr><td class="when">FRI 7:00 PM</td><td class="ev">Subjunction</td><td>Four caps. Hold one for 30s and a point is submitted. First faction to 150 wins.</td></tr>
             <tr><td class="when">SAT 7:00 PM</td><td class="ev">The Palace</td><td>A giant nether fortress cap. Level II books, netherite chest and legs, Palace Sword &amp; Bow.</td></tr>
             <tr><td class="when">EVERY 3 HRS</td><td class="ev">Random KOTH</td><td>Level I books, ore blocks, netherite helmets and boots.</td></tr>
             <tr><td class="when">EVERY HOUR</td><td class="ev">Glowstone Mountain</td><td>A giant glowstone block in the nether resets. Creeper spawners nearby for gunpowder.</td></tr>
@@ -250,6 +256,7 @@ footer .wrap { display: grid; gap: 8px; }
             <li class="new">Green LOL tag in chat &amp; tab</li>
             <li>Join servers even when full</li>
             <li>10 personal warps on LOLTEAMS</li>
+            <li class="new">40-min HCF deathban + 1 life a month</li>
           </ul>
         </article>
         <article class="rank">
@@ -260,6 +267,7 @@ footer .wrap { display: grid; gap: 8px; }
             <li class="new">Aqua PRO tag</li>
             <li class="new">/fly in the hub</li>
             <li class="new">20 warps on LOLTEAMS</li>
+            <li class="new">35-min HCF deathban + 3 lives a month</li>
             <li>Everything in LOL</li>
           </ul>
         </article>
@@ -271,6 +279,7 @@ footer .wrap { display: grid; gap: 8px; }
             <li class="new">Gold GOD tag</li>
             <li class="new">Join message in the hub</li>
             <li class="new">30 warps on LOLTEAMS</li>
+            <li class="new">25-min HCF deathban + 5 lives a month</li>
             <li>Everything in PRO</li>
           </ul>
         </article>
@@ -281,12 +290,18 @@ footer .wrap { display: grid; gap: 8px; }
           <ul>
             <li class="new">Animated rainbow LOLGOD tag, same wave as the LOLPVP logo</li>
             <li class="new">40 warps on LOLTEAMS</li>
+            <li class="new">15-min HCF deathban + 8 lives a month</li>
             <li>Everything in GOD</li>
           </ul>
         </article>
       </div>
       <a class="btn" id="store-link" href="https://lolpvp-webstore.tebex.io/" target="_blank" rel="noopener">open the store</a>
-      <p class="fair">No pay-to-win. Ranks are cosmetic and convenience only: no kits, gear, money or combat perks. Everyone gets 5 warps for free. That's the Minecraft EULA and it's how we want it anyway.</p>
+      <h3 class="dbh">HCF deathbans</h3>
+      <div class="dbwrap"><table class="deathbans">
+        <tr><th>No rank</th><th class="lol">LOL</th><th class="pro">PRO</th><th class="god">GOD</th><th class="rbt">LOLGOD</th></tr>
+        <tr><td>45 min</td><td>40 min</td><td>35 min</td><td>25 min</td><td>15 min</td></tr>
+      </table></div>
+      <p class="fair">A life skips a deathban the moment you rejoin, or revive a friend with <b>/pvp revive &lt;name&gt;</b>. Lives, one-time kits and enchant books are on the store too - and every one of them can be earned in game. Everyone gets 5 warps for free.</p>
     </div>
   </section>
 
