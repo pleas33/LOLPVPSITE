@@ -118,7 +118,8 @@ h2 { font-family: var(--display); font-weight: 400; font-size: clamp(20px, 3.4vw
 .deathbans .rbt { background: linear-gradient(90deg,#ff2626,#ffb026,#dfff26,#26ff7a,#26c6ff,#a626ff); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .hrname { background: linear-gradient(90deg,#ffd700,#ff8c00,#ff2626,#ffd700); background-size: 300% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: hrshift 4s linear infinite; font-weight: 800; }
 @keyframes hrshift { to { background-position: 300% 0; } }
-.rank.hr { border-color: #ffb026; }
+.rank.hr { border-color: #d24dff; }
+.hrtag { color: #ff55ff; font-weight: 700; }
 .ranks { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
 .rank { background: var(--panel); border: 3px solid var(--line); padding: 22px; display: grid; gap: 12px; align-content: start; min-width: 0; }
 .rank.top { box-shadow: 6px 6px 0 var(--shadow); border-color: var(--gold); }
@@ -298,10 +299,11 @@ footer .wrap { display: grid; gap: 8px; }
           </ul>
         </article>
         <article class="rank top hr">
-          <div class="tagname"><span class="hrname">HIGH ROLLER</span></div>
+          <div class="tagname"><span class="hrtag">[High Roller]</span></div>
           <div class="price">$99.99 <small>/ month</small></div>
-          <div class="chat"><b class="hrname" style="font-weight:inherit">Steve</b><span class="msg">: gg</span></div>
+          <div class="chat"><span class="hrtag">[High Roller]</span> <b class="hrname" style="font-weight:inherit">Steve</b><span class="msg">: gg</span></div>
           <ul>
+            <li class="new">Purple [High Roller] tag in chat &amp; tab</li>
             <li class="new">Pick your own name colour: any colour, rainbow or a gradient (<b>/namecolor</b>)</li>
             <li class="new">10-min HCF deathban + 12 lives a month</li>
             <li class="new">50 warps on LOLTEAMS</li>
@@ -312,7 +314,7 @@ footer .wrap { display: grid; gap: 8px; }
       <a class="btn" id="store-link" href="https://lolpvp-webstore.tebex.io/" target="_blank" rel="noopener">open the store</a>
       <h3 class="dbh">HCF deathbans</h3>
       <div class="dbwrap"><table class="deathbans">
-        <tr><th>No rank</th><th class="lol">LOL</th><th class="pro">LMAO</th><th class="god">ROFL</th><th class="rbt">XD</th><th class="hrname">HIGH ROLLER</th></tr>
+        <tr><th>No rank</th><th class="lol">LOL</th><th class="pro">LMAO</th><th class="god">ROFL</th><th class="rbt">XD</th><th class="hrtag">High Roller</th></tr>
         <tr><td>45 min</td><td>40 min</td><td>35 min</td><td>25 min</td><td>15 min</td><td>10 min</td></tr>
       </table></div>
       <p class="fair">A life skips a deathban the moment you rejoin, or revive a friend with <b>/pvp revive &lt;name&gt;</b>. Lives, one-time kits and enchant books are on the store too - and every one of them can be earned in game. Everyone gets 5 warps for free.</p>
